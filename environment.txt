@@ -1,0 +1,10 @@
+需要安装的第三方依赖如下：
+tensorflow==1.9.0
+numpy==1.14.3
+matplotlib==2.2.2
+pandas==0.23.0
+scipy==1.1.0
+opencv-python==3.4.3.18
+Pillow==5.1.0
+scikit-learn==0.19.1
+scikit-image==0.13.1
