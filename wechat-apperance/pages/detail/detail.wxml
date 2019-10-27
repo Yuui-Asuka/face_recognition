@@ -1,0 +1,30 @@
+<swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">  
+   <block wx:for="{{headimg}}" wx:for-index="index">  
+    <swiper-item>  
+     <image src="{{item.url}}" class="slide-image" mode="aspectFill"/>  
+    </swiper-item>  
+   </block>  
+</swiper>
+
+<view class="page-body">
+  <view class="page-body-wrapper">
+    <camera device-position="front" flash="off" binderror="error" style="width: 100%; height: 300px;"></camera>
+    <view class="btn-area">
+      <button type="primary" bindtap="takePhoto">写真を撮る</button>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="choiceImage">アルバムから選択する</button>
+    </view>
+    <input class="detailText" 
+    placeholder="あなたの名前を入力してください"
+    bindinput="bindTextAreaBlur"
+    value="{{details}}">
+</input>
+<view class="btn-area">
+      <button type="primary" bindtap="submit">提出する</button>
+    </view>   
+<view class="btn-area">
+      <button type="primary" bindtap="transform">进入识别页面</button>
+    </view>     
+  </view>
+</view>
