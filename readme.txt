@@ -1,70 +1,74 @@
-��Ŀ¼Ϊ�����ͱ���ʶ���ѵ������֤��Ӧ���ۺ�
+该目录为人脸和表情识别的训练、验证、应用综合
 ------------------------------------------------------------
-����Ϊ��Ŀ¼�ļ�����
+以下为各目录文件介绍
 ------------------------------------------------------------
-ģ��Ӧ��Ŀ¼
+模型应用目录
 
-��Ŀ¼�����ˣ�
+该目录包含了：
 
-1.�����ͱ������ҳʶ����Ƶʶ��ȹ���
-2.����ʶ���ĵ�
-3.����ʶ���ĵ�
-4.����ʶ���ѵ�����Ͳ��Լ�
-5.����ʶ��ͱ���ʶ���Ԥѵ��ģ��
-6.����Ч���Ϻõ���ѵ��ģ�ͣ�
+1.人脸和表情的网页识别、视频识别等功能
+2.人脸识别文档
+3.表情识别文档
+4.表情识别的训练集和测试集
+5.人脸识别和表情识别的预训练模型
+6.两个效果较好的自训练模型，
 
-˵����
+说明：
 
-1.��ҳʶ��ʱ��picture_mark.pyΪ��ڳ���
-2.��Ƶʶ��ʱ��video_recΪ��ڳ���
-3.ѵ������ģ��ʱ��emotion_trainΪ��ڳ���
-4.�����ѵ�����������������ÿ��Լ5000������
-5.����ģ�ͷ�����source/modelĿ¼��
-6.Ԥѵ��ģ��ΪsourceĿ¼�µ�20180402-114759�ļ�����ѵ��ģ��ΪsourceĿ¼�µ�facemodel_001��face_model_002�ļ�
-7.ע�⣺����������������ļ�emb.txt�Ѿ����ڣ���Ҫ����ģ��ʱ����Ҫɾ�����ļ�������picture_mark�������ɣ�һ��ģ�����ɵ������ļ�
-����������һ��ģ�͵�ʶ�𡣿�������picture_mark.py�������������ļ���
-
-------------------------------------------------------------
-ģ��ѵ��Ŀ¼
-
-��Ŀ¼�����ˣ�
-
-1.ѵ������ģ�͵Ĵ��룬���еĲ�������Ԥ��Ϊ��ʼֵ
-2.ѵ������ģ�͵����ݼ���������160��224���ֳߴ磬�ֱ��Ӧinception_reset V1��V2
-3.������֤���ݼ�
-4.����������֤��pairs�ļ�
-
-˵����
-
-1.���û����֤������train.py�µ�lfw_dir��lfw_pairs����������Ϊ���ַ�������ģ�ͽ�������ѵ����������֤
-2.��ģ�Ϳ��Խ�������ѵ������ʱ��Ҫ��pretrained_model��������Ϊ��20180402-114759/model-20180402-114759.ckpt-275��������ò���Ϊ���ַ����򲻻�����ѵ����
-3.models/facenetΪģ���ļ�����·��
-4.logs/facenetΪѵ����־�ļ�����·��
-5.pairs�ļ������dataĿ¼��
-6.�����Ҫ��ѵ�������н�����֤��������file_rename���ļ�������
-7.sourceĿ¼�µ�train_set_160��Ϊinception_resnet_v1�ṩ��ѵ������train_set_224��Ϊinception_resnet_v2�ṩ��ѵ����
+1.网页识别时，picture_mark.py为入口程序
+2.视频识别时，video_rec为入口程序
+3.训练表情模型时，emotion_train为入口程序
+4.表情的训练集包含了四种类别，每种约5000个样本
+5.表情模型放置在source/model目录下
+6.预训练模型为source目录下的20180402-114759文件，自训练模型为source目录下的facemodel_001和face_model_002文件
+7.注意：如果人脸向量保存文件emb.txt已经存在，想要更换模型时，需要删除该文件并运行picture_mark重新生成，一个模型生成的向量文件
+不能用于另一个模型的识别。可以运行picture_mark.py重新生成向量文件。
 
 ------------------------------------------------------------
+模型训练目录
 
-ģ����֤Ŀ¼
+该目录包含了：
 
-��Ŀ¼�����ˣ�
+1.训练人脸模型的代码，所有的参数均已预设为初始值
+2.训练人脸模型的数据集，包含了160和224两种尺寸，分别对应inception_reset V1和V2
+3.人脸验证数据集
+4.用于人脸验证的pairs文件
 
-1.ģ����֤����
-2.ģ�Ͳ������Ż��ĵ�
-3.������֤���ݼ�
-4.����ѵ����ģ�ͺ�Ԥѵ��ģ��
+说明：
 
-˵����
+1.如果没有验证集，则将train.py下的lfw_dir和lfw_pairs两个参数置为空字符，这样模型将不会在训练过程中验证
+2.该模型可以进行增量训练，此时需要把pretrained_model参数更改为“20180402-114759/model-20180402-114759.ckpt-275”，如果该参数为空字符，则不会增量训练。
+3.models/facenet为模型文件保存路径
+4.logs/facenet为训练日志文件保存路径
+5.pairs文件存放在data目录下
+6.如果需要在训练过程中进行验证，先运行file_rename将文件重命名
+7.source目录下的train_set_160是为inception_resnet_v1提供的训练集，train_set_224是为inception_resnet_v2提供的训练集
 
-1.validation.pyΪ����ļ�
-2.���и��ļ�ʱ��Ҫָ������������test_dirΪ���Լ�����Ŀ¼��modelΪģ������Ŀ¼��ͬʱ��Ҫ��test_pairs������Ϊpairs�ļ����ڵ�·����
-���У�pairs�ļ���Ϊlfw���ݼ�׼���ģ�pairs2�ļ���Ϊtest2���Լ�׼���ģ�pairs3�ļ���Ϊtest3���Լ�׼���ġ�test2�е�ͼƬ��224x224�ߴ磬
-������inception_resnet_v2ѵ����ģ�ͣ�test3�е�ͼƬ��160x160�ߴ磬������inception_resnet_v1ѵ����ģ�͡�
-3.ģ����֤ʹ�õ�pairs�ļ������sourceĿ¼��
-4.���ʹ���������ݼ����ԣ�������sourceĿ¼�µ�file_rename���ļ�������
-5.Ԥѵ��ģ��ΪsourceĿ¼�µ�20180402-114759�ļ�����ѵ��ģ��ΪsourceĿ¼�µ�facemodel_001��face_model_002�ļ�
+------------------------------------------------------------
 
+模型验证目录
+
+该目录包含了：
+
+1.模型验证代码
+2.模型测试与优化文档
+3.人脸验证数据集
+4.自行训练的模型和预训练模型
+
+说明：
+
+1.validation.py为入口文件
+2.运行该文件时需要指定两个参数：test_dir为测试集所在目录，model为模型所在目录，同时需要将test_pairs参数改为pairs文件所在的路径。
+其中：pairs文件是为lfw数据集准备的，pairs2文件是为test2测试集准备的，pairs3文件是为test3测试集准备的。test2中的图片是224x224尺寸，
+适用于inception_resnet_v2训练的模型，test3中的图片是160x160尺寸，适用于inception_resnet_v1训练的模型。
+3.模型验证使用的pairs文件存放在source目录下
+4.如果使用其他数据集测试，先运行source目录下的file_rename将文件重命名
+5.预训练模型为source目录下的20180402-114759文件，自训练模型为source目录下的facemodel_001和face_model_002文件
+
+
+
+-------------------------------------------------------------
+wechat-apperance为微信小程序的应用。
 
 
 
